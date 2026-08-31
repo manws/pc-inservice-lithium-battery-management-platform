@@ -4,11 +4,6 @@
 
     <div class="header">
       <div class="header-left">
-        <div class="back-btn" title="返回登录" @click="goLogin">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M12.5 4L7 10l5.5 6" stroke="#00c2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </div>
         <div class="logo-box">
           <img src="/assets/charging/139_10-20260828_132509725.svg" alt="logo" />
         </div>
@@ -22,6 +17,13 @@
           <span class="dot"></span>
           <span class="txt">{{ overview.statusText }}</span>
         </div>
+        <button class="logout-btn" type="button" @click="logout">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M7 3H4.5A1.5 1.5 0 0 0 3 4.5v9A1.5 1.5 0 0 0 4.5 15H7" stroke="#00c2ff" stroke-width="1.6" stroke-linecap="round" />
+            <path d="M8 9h7M12.5 5.5L15.5 9l-3 3.5" stroke="#00c2ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span>退出登录</span>
+        </button>
         <div class="time">{{ clock }}</div>
       </div>
     </div>
@@ -118,7 +120,7 @@ function openCabinet(cabinet) {
   router.push({ name: 'bms', params: { cabinetId: cabinet.id } })
 }
 
-async function goLogin() {
+async function logout() {
   await auth.logout()
   router.push({ name: 'login' })
 }
@@ -154,19 +156,24 @@ async function goLogin() {
   gap: 14px;
 }
 
-.back-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: rgba(5, 15, 36, 0.6);
+.logout-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid rgba(0, 194, 255, 0.45);
+  border-radius: 10px;
+  background: rgba(5, 15, 36, 0.55);
+  color: #7fe4ff;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
 }
 
-.back-btn:hover {
+.logout-btn:hover {
   background: rgba(0, 194, 255, 0.18);
+  border-color: rgba(0, 194, 255, 0.75);
 }
 
 .logo-box {
